@@ -1,0 +1,21 @@
+main {
+  margin: 0 auto;
+  width: 1000px;
+  height: 800px;
+}
+
+form {
+background-color: lightyellow;
+  margin: 0 auto;
+  width: 500px;
+  height: 400px;
+  border: 5px solid lightsalmon;
+
+}
+p {
+  margin: 15px;
+}
+
+textarea {
+  margin: 15px;
+}

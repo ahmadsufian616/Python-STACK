@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>View aurther</title>
+</head>
+<body>
+    <h1>{{name}}</h1>
+    <p>ID:{{ID}}</p>
+    <p>Note:{{note}}</p><br><br><br>
+    <P>Books:</P>
+    <form action="assignBook" method="POST">
+        {% csrf_token %}
+    <select class="form-select"  name="select_book" aria-label="Default select example" style="width: 200px; margin: 20px;">
+        {%for i in all_book%}
+        <option value="{{i.id}}">{{i.title}}</option>
+        
+        {%endfor%}
+      </select>
+      <input type="hidden" name="ID" value="{{ID}}">
+      <button type="submit" class="btn btn-dark" style="margin: 20px;" >ADD</button>
+    </form>
+
+    
+</body>
+</html>

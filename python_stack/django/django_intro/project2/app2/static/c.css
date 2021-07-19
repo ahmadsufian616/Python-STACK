@@ -1,0 +1,11 @@
+main{
+    width: 900px;
+    height: 800px;
+    margin: o auto;
+    background-color: bisque;
+}
+p{
+    text-align: center;
+    color: brown;
+    font-size: 50px;
+}

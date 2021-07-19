@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/c.css' %}">
+    <title>Add Book</title>
+</head>
+
+<body>
+
+    <main style="width: 1111px; height: auto; margin: 0 auto ; background-color: lightgray ;">
+        <h1 style="text-align: center;">ADD BOOK</h1>
+        <Header style="width: auto; height: auto ;margin: 35px;  display: flex;">
+            <form action="Add-Book" method="POST" >
+                {% csrf_token %}
+                <div class="mb-3" style="margin: 10px;">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+                </div>
+                <div class="mb-3" style="margin: 10px">
+                    <label for="desc" class="form-label">description</label>
+                    <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">ADD</button>
+            </form>
+            <form action="authers"><button type="submit">ADD authers</button></form>
+            <table class="table" style="width: 400px; height: 300px; margin: 35px; flex: 1;">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                {%for i in all_book%}
+                  <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.title}}</td>
+                    <td><form action="viewbook" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="title1" value="{{i.title}}">
+                        <input type="hidden" name="desc1" value="{{i.desc}}">
+                        <input type="hidden" name="ID" value="{{i.id}}">
+                        <button type="submit" class="btn btn-info">view</button> </form></td>
+                    {%endfor%}  
+                    
+                </tbody>
+              </table>
+        </Header>
+           
+        
+       
+    </main>
+</body>
+
+</html>

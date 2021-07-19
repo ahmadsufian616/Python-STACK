@@ -1,0 +1,86 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Website CSS style -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/cRegister.css' %}">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+</head>
+
+<body>
+    <div class="container "
+        style="width: 1111px; height: 100%; background-color: lightskyblue; justify-content: space-around; ">
+        <header style="display:flex; justify-content: space-between;">
+            <h2>Welcome {{request.session.name}}</h2>
+            <div class="form-group ">
+                <form action="logout" method="POST">
+                    {% csrf_token %}
+                <button type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button">Log out</button>
+                </form>
+            </div>
+        </header>
+        <hr>
+        <div class="mid" style="display: flex;">
+            <section style="flex: 1; margin: 15px;">
+                <form action="addbook" method="POST" style="width: 300px; margin: 15px;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="title" class="form-control" name="title" id="title" placeholder="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="description" name="desc" rows="3"></textarea>
+                        <button type="submit" class="btn btn-dark">ADD</button>
+                    </div>
+                </form>
+
+            </section>
+            <div class="right_side" style="flex: 1; margin: 15px;">
+                <h2>ALL Book</h2>
+                {%for i in all_book%}
+                <div class="a" style="margin: 15px;">
+                    <form action="bookdesc/{{i.id}}" method="POST">
+                      {% csrf_token %}
+                    <span class="d-block p-2 bg-dark text-white">Title : <button type="submit"
+                            class="btn btn-link">{{i.title}}</button>
+
+                        <p>ADD by {{i.uploaded_by.First_Name}} {{i.uploaded_by.Last_Name}}</p>
+                        {% if i in liked_books %}
+                        <p>this is one of your favouerate</p>
+                        {% else %}
+                        <a href="/like_book/{{i.id}}">like the book </a>
+                        {% endif %}
+                    </span>
+
+
+                    </form>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container"
+        style="width: 1111px; height: 100%; background-color: lightskyblue; justify-content: space-around; ">
+        <header style="display:flex; justify-content: space-between;">
+            <h2>Welcome {{request.session.name}}</h2>
+            <a href="/book"> GO back</a>
+            <div class="form-group ">
+                <form action="/logout" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button">Log
+                        out</button>
+                </form>
+            </div>
+        </header>
+        <hr>
+        <div class="mid" style="display: flex;">
+            <section>
+                {%if user.id == book.uploaded_by.id%}
+                <h2>Title: {{book.title}}</h2>
+
+                <form action="/editbook/{{book.id}}" method="POST">
+                    {% csrf_token %}
+                    <h2>update the title <input type="text" name="newtitle" placeholder="{{book.title}}"></h2>
+                    <p>ADDED by {{book.uploaded_by.First_Name}} {{book.uploaded_by.Last_Name}}</p>
+                    <p>ADDED on :{{book.create_at}}</p>
+                    <p>Last update on : {{book.update_at}}</p>
+                    <p>description:<br>
+                        <textarea name="newdesc" id="" cols="30" rows="10">{{book.desc}}</textarea>
+                    </p>
+                    <button type="submit" name="edit" value="edit" class="btn btn-success">Edit</button>
+                    <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
+                </form>
+                {%endif%}
+                {%if user.id != book.uploaded_by.id%}
+                <h2>Title: {{book.title}}</h2>
+                <p>ADDED by {{book.uploaded_by.First_Name}} {{book.uploaded_by.Last_Name}}</p>
+                <p>ADDED on :{{book.create_at}}</p>
+                <p>Last update on : {{book.update_at}}</p>
+                <p>description:<br>
+                    {{book.desc}}
+                </p>
+                {%endif%}
+            </section>
+            <div class="side">
+                <h2>Users Who like this Book :</h2>
+                <ul>
+                    {%for i in liked_books %}
+                    <li>{{i.First_Name}} {{i.Last_Name}}</li>
+                    {%endfor%}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

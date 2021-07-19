@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'c.css' %}">
+    <title>Gold ninja game</title>
+</head>
+
+<body>
+    <main>
+        <p class="score">your Gold: {{request.session.Gold}}</p>
+        <form action="/reset" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary pull-right" value="Play Again">
+          </form>
+        <div class="box">
+            <form action="/process_money" method="POST">
+                <div class="sq">
+
+                    {% csrf_token %}
+                    <h2>Farm</h2>
+                    <p>(earn 10-20 golds)</p>
+                    <input type="hidden" name="hiddeninput" value="farm" />
+                    <button type="submit">Find Gold!</button>
+                </div>
+            </form>
+
+            <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <div class="sq">
+                    <h2>Cave</h2>
+                    <p>(earn 5-10 golds)</p>
+                    <input type="hidden" name="hiddeninput" value="cave" />
+                    <button type="submit">Find Gold!</button>
+                </div>
+            </form>
+
+            <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <div class="sq">
+                    <h2>House</h2>
+                    <p>(earn 2-5 golds)</p>
+                    <input type="hidden" name="hiddeninput" value="house" />
+                    <button type="submit">Find Gold!</button>
+                </div>
+            </form>
+
+            <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <div class="sq">
+                    <h2>Casino</h2>
+                    <p>(earn/takes 0-50 golds)</p>
+                    <input type="hidden" name="hiddeninput" value="casino" />
+                    <button type="submit">Find Gold!</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="row">
+            <h3>Activities:</h3>
+            <div class="col-lg-12" style="height: 400px; overflow: scroll">
+                {% for log in request.session.activities reversed %}
+                {% if "lost" in log %}
+                <h4 class="text-danger">{{ log }}</h4>
+                {% else %}
+                <h4 class="text-success">{{ log }}</h4>
+                {% endif %}
+                {% endfor %}
+    </main>
+</body>
+
+</html>
+

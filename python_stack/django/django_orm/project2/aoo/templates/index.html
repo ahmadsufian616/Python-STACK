@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'c.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add a User</h2>
+    <form action="/add" method="POST">
+        {% csrf_token %}
+<p><label for="name">Name:</label>
+<input type="text" name="name">
+<label for="age">Age:</label>
+<input type="text" name="age">
+</p><br>
+<p><label for="email">email:</label>
+    <input type="text" name="email"></p>
+    <button type="submit">add</button>
+    </form>
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>email</th>
+          <th>Age</th>
+        </tr>
+        {%for i in users%}
+        <tr>
+          <td>{{i.name}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.age}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+
+
+
+
+</body>
+</html>

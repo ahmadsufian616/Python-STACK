@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='c.css')}}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Table</title>
+</head>
+<body>
+    <main>
+    <!-- {% for users in users %}
+        <p>{{ users['first_name'] }} - {{ users['last_name'] }}</p>
+    {% endfor %} -->
+
+    <h1>users</h1>
+
+    <table>
+        <tr>
+          <th>first_name</th>
+          <th>last_name</th>
+          
+        </tr>
+        {% for users in users %}
+        <tr>
+          <td>{{ users['first_name'] }}</td>
+          <td>{{ users['last_name'] }}</td>
+          
+        </tr>
+        {% endfor %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='c.css')}}">
+    <title>checkeboard</title>
+</head>
+
+<body>
+    <div class="con">
+        <h1>hello!{{num}} </h1>
+        <h2>{{num1}},{{num2}}</h2>
+        <table>
+            {%for i in range(num):%}
+            <tr>
+                {%for j in range(num):%}
+                <td class="box"></td>
+                <td class="box1"></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {%for j in range(num):%}
+                <td class="box1"></td>
+                <td class="box"></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            
+            <tr>
+                {%if odd==True:%}
+                {%for j in range(num):%}
+                <td class="box"></td>
+                <td class="box1"></td>
+                {% endfor %}
+                {% endif %}
+                
+            </tr>
+           
+        </table>
+
+    </div>
+</body>
+
+</html>

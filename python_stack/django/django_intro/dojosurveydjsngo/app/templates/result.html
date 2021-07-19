@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=res, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'c1.css' %}">
+    <title>result</title>
+</head>
+
+<body>
+    <main>
+        <h1>Submitted info </h1>
+        <table>
+            <!-- <p>Name {{ name }} </p>
+            <p>loction {{ loc }} </p>
+            <p>language {{ lan }} </p>
+            <p>Comment {{ com }}</p> -->
+
+            <tr>
+                <th>Name</th>
+                <th>loction</th>
+                <th>language</th>
+                <th>Comment</th>
+            </tr>
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ loc }}</td>
+                <td>{{ lan}}</td>
+                <td>{{ com }}</td>
+            </tr>
+        </table>
+    </main>
+</body>
+
+</html>

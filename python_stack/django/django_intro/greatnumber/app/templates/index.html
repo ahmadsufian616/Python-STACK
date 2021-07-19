@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'c.css' %}">
+    <title>great number game</title>
+</head>
+
+<body>
+    <main>
+        <h1>welcome to the great number game</h1>
+        <p> i am thinking of a number between 1 and 100</p>
+        <p>take a guess</p>
+        <p>{{request.session.number}}</p>
+        {%if request.session.result == "high" %}
+        <h2 class="h">high</h2>
+        {%endif%}
+        {%if request.session.result == "low" %}
+        <h2 class="l">low</h2>
+        {%endif%}{%if request.session.result == "equal" %}
+        <h2 class="e">equal</h2>
+        {%endif%}
+        <!-- <p>result: {{request.session.result}}</p> -->
+        <form action="/test" method="POST">
+            {% csrf_token %}
+            <input type="text" name="name">
+            <button type="submit">submit</button>
+        </form>
+        <form action="/del" method="POST">
+            {% csrf_token %}
+            <button type="submit">change</button>
+        </form>
+    </main>
+</body>
+
+</html>

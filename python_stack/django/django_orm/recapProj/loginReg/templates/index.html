@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+    <form method="POST" action="/registration">
+        {% csrf_token %}
+        <label for="first">First name</label><br>
+        <input type="text" name="first" id="first" required><br>
+        <label for="last">Last name</label><br>
+        <input type="text" name="last" id="last" required><br>
+        <label for="email"> Email</label><br>
+        <input type="email" name="email" id="email" required><br>
+        <label for="pass">Password</label><br>
+        <input type="password" name="pass" id="pass" required><br>
+        <label for="cpass">Confirm Password</label><br>
+        <input type="password" name="cpass" id="cpass" required><br><br>
+        <input type="submit" value="REGISTER"><br><br>
+    </form>
+
+    <form action="/login" method="POST">
+        {% csrf_token %}
+        <label for="Lemail"> Email</label><br>
+        <input type="email" name="Lemail" id="Lemail"><br>
+        <label for="Lpass">Password</label><br>
+        <input type="password" name="Lpass" id="Lpass"><br>
+        <input type="submit" value="LOGIN">
+    </form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/c1.css' %}">
+    <title>ADD Auther</title>
+</head>
+
+<body>
+
+    <main style="width: 1000px; height: 800px; margin: 0 auto ; background-color: lightgray ;">
+        <h1 style="text-align: center;">ADD Auther</h1>
+        <Header style="width: auto; height: auto ;margin: 35px;  display: flex;">
+            <form action="Add-Auther" method="POST">
+                {% csrf_token %}
+                <div class="mb-3" style="margin: 10px;">
+                    <label for="fname" class="form-label">First name</label>
+                    <input type="text" name="fname" class="form-control" id="title" placeholder="ahmad">
+                </div>
+                <div class="mb-3" style="margin: 10px;">
+                    <label for="lname" class="form-label">Last name</label>
+                    <input type="text" name="lname" class="form-control" id="lname" placeholder="sufian">
+                </div>
+                <div class="mb-3" style="margin: 10px">
+                    <label for="note" class="form-label">Notes</label>
+                    <textarea class="form-control" name="note" id="note" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">ADD</button>
+            </form>
+            <table class="table" style="width: 400px; height: 300px; margin: 35px; flex: 1;">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for i in all_aurther%}
+                    <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.fname}}{{i.lname}}</td>
+                        <td>
+                            <form action="viewaruther" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="allname" value="{{i.fname}}{{i.lname}}">
+                                <input type="hidden" name="note" value="{{i.notes}}">
+                                <input type="hidden" name="ID" value="{{i.id}}">
+                                <button type="submit" class="btn btn-info">view</button>
+                            </form>
+                        </td>
+                        {%endfor%}
+
+                </tbody>
+            </table>
+
+        </Header>
+
+
+    </main>
+</body>
+
+</html>

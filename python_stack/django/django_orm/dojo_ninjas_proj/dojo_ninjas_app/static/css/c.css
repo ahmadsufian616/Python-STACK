@@ -1,0 +1,23 @@
+main{
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;
+    background-color: lightpink;
+}
+header{
+    height: 200px;
+    display:flex;
+    background-color: darkgray;
+
+}
+.dojo{
+    border: 2px solid black;
+    margin: 25px;
+    flex: 1;
+}
+
+.ninja{
+    border: 2px solid black;
+    margin: 25px;
+    flex: 1;
+}
